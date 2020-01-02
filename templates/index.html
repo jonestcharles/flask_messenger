@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+        <script id="post" type="text/x-handlebars-template">
+            <div class="post" id="{% raw-%}{{ post-id }}{%- endraw %}">
+                <button type="submit" class="delete">
+                    &times;
+                </button>
+                <div class="post-content">
+                    {% raw -%}
+                        {{ post-content }}
+                    {%- endraw %}
+                </div>
+                <div class="post-meta">
+                    <span class="post-author">
+                        from: 
+                        {% raw -%}
+                            {{ post-author }}
+                        {%- endraw %}
+                    </span>
+                    <span class="post-date">
+                        sent: 
+                        {% raw -%}
+                            {{ post-date }}
+                        {%- endraw %}
+                    </span>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+
+    </head>
+    <body>
+        <div class="sidenav" id="sidenav">
+            <div class="channel-list" id="channel-list">
+                {% for channel in channels %}
+                    <a href="" class="nav-link" id="{{ channel }}" data-page="{{ channel }}">#{{ channel }}</a> 
+                {% endfor %}
+            </div>
+            <form id="new-channel" action="{{ url_for('channel') }}" method="post">
+                {% if error %}
+                    <p>Channel already exists.</p>
+                {% endif %}
+                <input type="text" id="channel-name" name="channel-name" placeholder="Channel Name" required>
+                <button id="channel-submit" type="submit">
+                    Add Channel
+                </button>
+            </form>
+        </div>
+        <div class="login main" id="login-block">
+            <h1 id="user-text">
+                Welcome to Chat!
+            </h1>
+            <p>
+            Please create a username:
+            </p>
+            <div class="wrapper">
+                <form id="login">
+                    <input type="text" id="username" name="username" 
+                        placeholder="enter a username" size="144" required>
+                    <button id="login-submit" type="submit">
+                        Start
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="main" id="main">
+            <div class="header">
+                <h2 class="channel-title">
+                </h2>
+                <p class="logged-in-as">
+                </p>
+                <div class="wrapper">
+                    <form id="new-message">
+                        <input type="text" id="message" name="message" autofocus 
+                            placeholder="Type your message here..." required size="144">
+                        <button id="message-submit" type="submit">
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div id="messages">
+            </div>
+        </div>
+    </body>
+</html>

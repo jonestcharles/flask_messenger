@@ -1,0 +1,160 @@
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #535353;
+}
+
+h1, h2, p {
+  color: white;
+}
+
+input[type=text] {
+  color: #88D317;
+  background-color: #6E3667;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #535353;
+  width: 100%;
+  max-width: fit-content;
+  box-sizing: border-box;
+}
+input[type=text]:focus {
+  border-color: #88D317;
+}
+
+button {
+  color: #1A0315;
+  background-color: #88D317;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #88D317;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #1A0315;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+#new-channel {
+  position: absolute;
+  bottom: 2em;
+}
+
+#message-submit, #login-submit, #channel-submit {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #535353;
+  display: block;
+}
+.sidenav a.active {
+  background-color: #6E3667;
+  color: #88D317;
+}
+.sidenav a.link-off {
+  pointer-events: none;
+  cursor: default;
+}
+.sidenav a:hover {
+  color: white;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 1067px;
+  /* keep this consistent as position is changed */
+  z-index: 2;
+  background-color: #535353;
+}
+
+.sticky + .messages {
+  padding-top: 25px;
+}
+
+.main {
+  margin-left: 160px;
+  /* Same as the width of the sidenav */
+  padding: 0px 10px;
+  background-color: #535353;
+}
+
+.post {
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: #88D317;
+  color: #88D317;
+  background-color: #1A0315;
+  font-size: 20px;
+  margin: 5px;
+  padding: 10px;
+  animation-name: hide;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.delete {
+  float: right;
+}
+
+.post-author, .post-author {
+  font-size: 14px;
+  font-style: italic;
+}
+
+#new-channel {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 5px 0px 5px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+    height: 100;
+    line-height: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  75% {
+    opacity: 0;
+    height: 100%;
+    line-height: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  100% {
+    opacity: 0;
+    height: 0px;
+    line-height: 0px;
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

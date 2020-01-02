@@ -1,0 +1,157 @@
+$e_lime: #88D317;
+$violet: #6E3667;
+$deep_plum: #1A0315;
+$shadow: #535353;
+
+@mixin anim($op, $hgt, $lnhgt, $pdd, $mrg) {
+    opacity: $op;
+    height: $hgt;
+    line-height: $lnhgt;
+    padding: $pdd;
+    margin-bottom: $mrg;
+  }
+
+@mixin bord($style, $rad, $wid, $col) {
+  border-style: $style;
+  border-radius: $rad;
+  border-width: $wid;
+  border-color: $col;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: $shadow;
+}
+
+h1, h2, p {
+  color: white;
+}
+
+input[type=text] {
+  color: $e_lime;
+  background-color: $violet;
+  @include bord(solid, 5px, 2px, $shadow);
+  width: 100%;
+  max-width: fit-content;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: $e_lime;
+  }
+}
+
+button {
+  color: $deep_plum;
+  background-color: $e_lime;
+  @include bord(solid, 5px, 2px, $e_lime);
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $deep_plum;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+#new-channel {
+    position: absolute;
+    bottom: 2em;
+}
+
+#message-submit, #login-submit, #channel-submit {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: $shadow;
+  display: block;
+
+  &.active {
+  background-color: $violet;
+  color: $e_lime;
+  }
+
+  &.link-off {
+  pointer-events: none;
+  cursor: default;
+  }
+
+  &:hover {
+    color: white;
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 1067px; /* keep this consistent as position is changed */
+  z-index: 2;
+  background-color: $shadow;
+}
+
+.sticky + .messages {
+  padding-top: 25px;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+  background-color: $shadow;
+}
+
+.post {
+  @include bord(solid, 15px, 2px, $e_lime);
+  color: $e_lime;
+  background-color: $deep_plum; 
+  font-size: 20px;
+  margin: 5px;
+  padding: 10px;
+  animation-name: hide;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.delete {
+  float: right;
+}
+
+.post-author, .post-author {
+  font-size: 14px;
+  font-style: italic;
+}
+
+#new-channel {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 5px 0px 5px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+ @keyframes hide {
+  0% {
+    @include anim(1, 100&, 100%, 20px, 10px);
+  }
+
+  75% {
+    @include anim(0, 100%, 100%, 20px, 10px);
+  }
+
+  100% {
+    @include anim(0, 0px, 0px, 0px, 0px);
+  }
+}
